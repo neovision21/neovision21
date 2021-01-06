@@ -11,7 +11,7 @@ const App = () => {
       <BrowserRouter>
         <title>neovision21</title>
         <Switch>
-          <Route exact={true} path={'/home'} component={Home} />
+          <Route exact={true} path={'/detail'} component={Home} />
           <Route exact={true} path={'/'} component={Main} />
         </Switch>
       </BrowserRouter>
