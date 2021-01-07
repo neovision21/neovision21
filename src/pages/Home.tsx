@@ -1,5 +1,6 @@
-import { FilmInterface } from 'data/filmList';
+import { FilmInterface, filmList } from 'data/filmList';
 import React from 'react';
+import Swiper from 'react-id-swiper';
 import { RouteComponentProps } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import styled from 'styled-components';
@@ -15,30 +16,34 @@ const Home: React.FC<RouteComponentProps> = (props) => {
   const filmData: FilmInterface = state.filmData;
   console.log('filmData', filmData);
   return (
-    <Container>
-      <LeftContent>
-        <Header>
-          <Title>{filmData.title}</Title>
-          <div>{`${filmData.genre} | ${filmData.playTime}`}</div>
-        </Header>
-        <Content>
-          <div>Made by</div>
-          <ProducerList>
-            {filmData.producer.map((item) => (
-              <ProducerItem>
-                {item.name}
-                <ProducerImg src={item.picture} />
-              </ProducerItem>
-            ))}
-          </ProducerList>
-          <div>{filmData.description}</div>
-        </Content>
-        <YouTube videoId={filmData.id} onReady={(event) => event.target.pauseVideo()} opts={opts}></YouTube>
-      </LeftContent>
-      <RightContent>
-        <PosterImg src={filmData.posterImg} />
-      </RightContent>
-    </Container>
+    <Swiper activeSlideKey={filmData.id}>
+      {filmList.map((item) => (
+        <Container key={item.id}>
+          <LeftContent>
+            <Header>
+              <Title>{item.title}</Title>
+              <div>{`${item.genre} | ${item.playTime}`}</div>
+            </Header>
+            <Content>
+              <div>Made by</div>
+              <ProducerList>
+                {item.producer.map((item) => (
+                  <ProducerItem>
+                    {item.name}
+                    <ProducerImg src={item.picture} />
+                  </ProducerItem>
+                ))}
+              </ProducerList>
+              <div>{item.description}</div>
+            </Content>
+            <YouTube videoId={item.id} onReady={(event) => event.target.pauseVideo()} opts={opts}></YouTube>
+          </LeftContent>
+          <RightContent>
+            <PosterImg src={item.posterImg} />
+          </RightContent>
+        </Container>
+      ))}
+    </Swiper>
   );
 };
 
@@ -62,6 +67,7 @@ const RightContent = styled.div`
 
 const Container = styled.div`
   display: flex;
+  width: 100vh;
 `;
 
 const Content = styled.div`
