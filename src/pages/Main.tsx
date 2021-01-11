@@ -6,30 +6,37 @@ import 'swiper/css/swiper.css';
 
 const Main: React.FC = () => {
   return (
-    <div>
+    <Background>
       <Title>NEOVISION21</Title>
       <GridContainer>
         {filmList.map((item) => (
-          <PosterContainer key={item.id}>
-            <Link
-              to={{
-                pathname: '/detail',
-                state: { filmData: item },
-              }}>
-              <Poster src={item.posterImg} />
-              <FilmTitle>{item.title}</FilmTitle>
-            </Link>
+          <PosterContainer
+            key={item.id}
+            to={{
+              pathname: '/detail',
+              state: { filmData: item },
+            }}>
+            <Poster src={item.posterImg} />
+            <FilmTitle>{item.title}</FilmTitle>
           </PosterContainer>
         ))}
       </GridContainer>
-    </div>
+    </Background>
   );
 };
 
+const Background = styled.div`
+  background-image: url('/assets/images/seamless-2033674_1280.jpg');
+  background-size: 50vw;
+`;
+
 const Title = styled.div`
-  font-size: 59px;
+  font-size: 40px;
+  height: 10vh;
+  align-items: center;
   justify-content: center;
-  width: 100vw;
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
 `;
 
 const Poster = styled.img`
@@ -39,19 +46,23 @@ const Poster = styled.img`
 `;
 
 const FilmTitle = styled.div`
+  padding: 20px;
   z-index: 100;
-  height: 100px;
-  font-size: 20px;
-  color: black;
+  font-size: 30px;
+  text-decoration;
 `;
 
-const PosterContainer = styled.div`
+const PosterContainer = styled(Link)`
   height: 50vh;
   padding: 20px;
+  color: inherit;
+  text-decoration: none;
 `;
 
 const GridContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px;
 `;
 export default Main;
