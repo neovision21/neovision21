@@ -36,7 +36,7 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(35, 33, 6, 0.3);
 `;
 
 const Poster = styled.img`
@@ -57,6 +57,8 @@ const PosterContainer = styled(Link)`
   padding: 20px;
   color: inherit;
   text-decoration: none;
+  padding: 30px;
+  margin: 20px;
 `;
 
 const GridContainer = styled.div`
@@ -64,5 +66,7 @@ const GridContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(512px, 1fr));
 `;
 export default Main;
