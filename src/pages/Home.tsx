@@ -141,6 +141,7 @@ const ProducerList = styled.div`
 const Description = styled.div`
   padding: 100px 0px;
   text-align: left;
+  font-family: 'Nanum Myeongjo', serif;
 `;
 
 const PosterImg = styled.img`
